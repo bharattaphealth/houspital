@@ -18,6 +18,7 @@ import { Label } from '../ui/label'
 import { CardDescription, CardTitle } from '../ui/card'
 import Accordion from '../accordian'
 import UploadButton from '../upload-button'
+import ChatCard from './chat-card'
 
 type Props = {
   errors: any
@@ -72,10 +73,13 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
   ) => {
     console.log(errors)
     return (
-      <div className="h-[670px] w-[450px] flex flex-col bg-white rounded-xl mr-[80px] border-[1px] overflow-hidden">
+
+      <div className="h-[350px] w-[220px] md:w-[270px]  flex flex-col bg-gradient-to-b from-[#3047EC] from-20% via-[#FFFFFF] to-[#FFFFFF] rounded-xl mr-[80px] border-[1px] overflow-auto"
+
+      >
         <div className="flex justify-between px-4 pt-4">
           <div className="flex gap-2">
-            <Avatar className="w-20 h-20">
+            <Avatar className="w-8 h-8">
               <AvatarImage
                 src="https://github.com/shadcn.png"
                 alt="@shadcn"
@@ -83,10 +87,10 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
             <div className="flex items-start flex-col">
-              <h3 className="text-lg font-bold leading-none">
-                Sales Rep - Web Prodigies
+              <h3 className="text-lg font-bold leading-none text-white">
+                Houspital
               </h3>
-              <p className="text-sm">{domainName.split('.com')[0]}</p>
+              <p className="text-sm text-white">{true?"HealthCare":domainName.split('.com')[0]}</p>
               {realtimeMode?.mode && (
                 <RealTimeMode
                   setChats={setChat}
@@ -95,16 +99,29 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
               )}
             </div>
           </div>
-          <div className="relative w-16 h-16">
-            <Image
+          <div className="relative">
+            <p className="text-white font-inter text-[11px] text-[#B1C6D8]">powered by</p>
+            <p className="text-[11px] text-white font-inter flex justify-center text-[#B1C6D8]">Tap Health </p>
+            {/* <Image
               src="https://ucarecdn.com/019dd17d-b69b-4dea-a16b-60e0f25de1e9/propuser.png"
               fill
               alt="users"
               objectFit="contain"
-            />
+            /> */}
           </div>
         </div>
-        <TabsMenu
+        <div className='mt-8 ml-5'>
+          <p className='text-[#F8F8F8] font-inter text-xl'
+          style={{opacity:0.8}}
+          >
+            Hello there {String.fromCodePoint(parseInt('0x1f44b', 16))}
+          </p>
+          <p className='text-[#F8F8F8] font-semibold  font-inter text-xl '>
+            How can we Help?
+          </p>
+        </div>
+        <ChatCard heading="Ask any question"/>
+        {/* <TabsMenu
           triggers={BOT_TABS_MENU}
           className=" bg-transparent border-[1px] border-border m-2"
         >
@@ -140,6 +157,7 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
                   <Button
                     type="submit"
                     className="mt-3"
+                    onClick={()=>alert("content of message is ")}
                   >
                     <Send />
                   </Button>
@@ -176,10 +194,8 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
               ))}
             </div>
           </TabsContent>
-        </TabsMenu>
-        <div className="flex justify-center ">
-          <p className="text-gray-400 text-xs">Powered By Web Prodigies</p>
-        </div>
+        </TabsMenu> */}
+
       </div>
     )
   }

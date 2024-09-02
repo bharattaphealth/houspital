@@ -1,7 +1,9 @@
 import React from 'react'
 
 export const BotIcon = () => {
+
   return (
+
     <svg
       width="47"
       height="47"
