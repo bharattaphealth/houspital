@@ -1,5 +1,5 @@
 import { ChatBotMessageProps } from '@/schemas/conversation.schema'
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useState } from 'react'
 import { UseFormRegister } from 'react-hook-form'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import RealTimeMode from './real-time'
@@ -13,12 +13,13 @@ import Bubble from './bubble'
 import { Responding } from './responding'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
-import { Paperclip, Send } from 'lucide-react'
+import { CalendarPlus2, ChevronLeft, Paperclip, Send } from 'lucide-react'
 import { Label } from '../ui/label'
 import { CardDescription, CardTitle } from '../ui/card'
 import Accordion from '../accordian'
 import UploadButton from '../upload-button'
 import ChatCard from './chat-card'
+import CustomCard from './customCard'
 
 type Props = {
   errors: any
@@ -53,6 +54,8 @@ type Props = {
   >
 }
 
+const primaryColor='#EF7F1A'
+
 export const BotWindow = forwardRef<HTMLDivElement, Props>(
   (
     {
@@ -71,26 +74,25 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
     },
     ref
   ) => {
+    const [chatScreen,setChatScreen] = useState(false)
     console.log(errors)
+    if(!chatScreen)
     return (
-
-      <div className="h-[350px] w-[220px] md:w-[270px]  flex flex-col bg-gradient-to-b from-[#3047EC] from-20% via-[#FFFFFF] to-[#FFFFFF] rounded-xl mr-[80px] border-[1px] overflow-auto"
-
+      <div className="h-[450px] w-[300px] flex flex-col bg-gradient-to-b from-[#EF7F1A] from-20% via-[#FFFFFF] to-[#FFFFFF] rounded-xl mr-[80px] border-[1px] overflow-auto relative left-[60px] md:left-0"
       >
-        <div className="flex justify-between px-4 pt-4">
-          <div className="flex gap-2">
-            <Avatar className="w-8 h-8">
-              <AvatarImage
-                src="https://github.com/shadcn.png"
+         <div className="flex justify-between px-4 pt-4 mt-2">
+          <div className="flex gap-2 items-center">
+
+              <img
+                src="https://github.com/bharatvarmagit/bharatvarmagit.github.io/blob/master/HouspitalLogo.png?raw=true"
                 alt="@shadcn"
+                height={25}
+                width={120}
+
               />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
+
             <div className="flex items-start flex-col">
-              <h3 className="text-lg font-bold leading-none text-white">
-                Houspital
-              </h3>
-              <p className="text-sm text-white">{true?"HealthCare":domainName.split('.com')[0]}</p>
+
               {realtimeMode?.mode && (
                 <RealTimeMode
                   setChats={setChat}
@@ -100,8 +102,8 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
             </div>
           </div>
           <div className="relative">
-            <p className="text-white font-inter text-[11px] text-[#B1C6D8]">powered by</p>
-            <p className="text-[11px] text-white font-inter flex justify-center text-[#B1C6D8]">Tap Health </p>
+            <p className="text-white font-inter text-[9px] text-[#FFFFFF]">powered by</p>
+            <p className="text-[9px] text-white font-inter flex justify-center text-[#FFFFFF]">Tap Health </p>
             {/* <Image
               src="https://ucarecdn.com/019dd17d-b69b-4dea-a16b-60e0f25de1e9/propuser.png"
               fill
@@ -110,8 +112,9 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
             /> */}
           </div>
         </div>
+
         <div className='mt-8 ml-5'>
-          <p className='text-[#F8F8F8] font-inter text-xl'
+          <p className='text-[#F8F8F8] font-inter font-semibold text-xl'
           style={{opacity:0.8}}
           >
             Hello there {String.fromCodePoint(parseInt('0x1f44b', 16))}
@@ -121,6 +124,42 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
           </p>
         </div>
         <ChatCard heading="Ask any question"/>
+        <CustomCard
+          heading={"Book a Physiotherapist"}
+          subheading={''}
+          left={
+            <img
+              src="https://github.com/bharatvarmagit/bharatvarmagit.github.io/blob/master/icon-physiotherapy.png?raw=true"
+              height={28}
+              width={28}
+
+            />
+          }
+          />
+          <CustomCard
+          heading={"Book Baby and Mother Care"}
+          subheading={""}
+          left={
+           <img
+              src="https://github.com/bharatvarmagit/bharatvarmagit.github.io/blob/master/icon-baby%20-nd-mother%20care.png?raw=true"
+              height={28}
+              width={28}
+
+            />
+          }
+          />
+          <CustomCard
+          heading={"Get nursing care at home"}
+          subheading={""}
+          left={
+           <img
+              src="https://github.com/bharatvarmagit/bharatvarmagit.github.io/blob/master/icon-nurse.png?raw=true"
+              height={28}
+              width={28}
+
+            />
+          }
+          />
         {/* <TabsMenu
           triggers={BOT_TABS_MENU}
           className=" bg-transparent border-[1px] border-border m-2"
@@ -198,6 +237,37 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
 
       </div>
     )
+    else
+    return(
+      <div className="h-[450px] w-[300px] flex flex-col bg-white rounded-xl mr-[80px] border-[1px] overflow-auto relative left-[60px] md:left-0"
+      >
+        <div
+          className=' h-[60px] bg-[#EF7F1A] flex items-center px-2'
+        >
+          <div className='flex-none w-10'>
+            <ChevronLeft color='#FFFFFF' size={25}/>
+          </div>
+          <div className='flex-1 w-64'>
+            <div className="flex-1 flex-col justify-center items-center">
+              <p className='text-white font-inter font-bold text-md '>
+                Houspital
+              </p>
+              <div className='flex items-center'>
+                <p className='font-inter text-[#EF7F1A] rounded-lg bg-[#FFFFFF]  text-[10px] font-bold px-0.5'>
+                {'AI '}
+                </p>
+                <p className='text-white text-[11px] font-inter font-normal ml-1'>
+                  Replies instantly
+              </p>
+            </div>
+
+
+
+            </div>
+          </div>
+        </div>
+    </div>
+  )
   }
 )
 
