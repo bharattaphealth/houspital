@@ -35,11 +35,8 @@ const Bubble = ({ message, createdAt }: Props) => {
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
       ) : (
-        <Avatar className="w-5 h-5">
-          <AvatarFallback>
-            <User />
-          </AvatarFallback>
-        </Avatar>
+        <>
+        </>
       )}
       <div
         className={cn(
