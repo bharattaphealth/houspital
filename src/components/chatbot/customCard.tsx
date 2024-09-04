@@ -9,16 +9,16 @@ type PropTypes={
 const CustomCard = (props:PropTypes) => {
   return (
     <div
-        className='flex items-center px-2
+        className='flex items-center px-3
         mx-2.5 my-1 p-3 bg-white rounded-md border-[1px] border-[#00000024]
         shadow-sm'
     >
-        <div className='flex-none w-7 ml-1'>
+        <div className='flex-none w-7'>
            {props.left}
         </div>
 
         <div className='flex flex-col w-64 justify-center align-center max-w-48 ml-3'>
-          <p className='text-[13px] font-inter font-bold'>
+          <p className='text-xs font-inter font-semibold'>
             {props.heading}
           </p>
           {props.subheading&&
