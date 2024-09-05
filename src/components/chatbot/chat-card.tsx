@@ -4,11 +4,14 @@ import React from 'react'
 
 type Props ={
     heading:String,
+    setChatScreen: (value: boolean) => void
 
 }
 export const chatCard = (props:Props) => {
   return (
-    <div className='mx-2.5 my-3 bg-white p-3 rounded-md border-[1px] border-[#00000024] shadow-sm'>
+    <div className='mx-2.5 my-3 bg-white p-3 rounded-md border-[1px] border-[#00000024] shadow-sm'
+
+    >
         <div className='flex flex-row justify-between'>
             <p className='font-inter text-dark  text-sm font-semibold'>
             {props.heading}
@@ -22,7 +25,9 @@ export const chatCard = (props:Props) => {
             </p>
             </div>
         </div>
-        <div className="h-[100px] p-2 flex flex-col justify-between rounded border-[#EF7F1A] border-[1.25px] mt-2 ">
+        <div className="h-[100px] p-2 flex flex-col justify-between rounded border-[#EF7F1A] border-[1.25px] mt-2 "
+            onClick={()=>props.setChatScreen(true)}
+        >
             {/* <div className='flex-1 flex-col justify-between items-between content-between p-2'> */}
                 <p className='text-[#1B1F26B8] font-inter font-light text-[11px]'>
                     {'Have a question about Housepital or its services? Ask anything you want...'}

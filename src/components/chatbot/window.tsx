@@ -82,14 +82,13 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
       >
          <div className="flex justify-between px-4 pt-4">
           <div className="flex gap-2 items-center">
-
               <img
-                src="https://github.com/bharatvarmagit/bharatvarmagit.github.io/blob/master/HouspitalLogo.png?raw=true"
-                alt="@shadcn"
+                src='https://github.com/bharatvarmagit/bharatvarmagit.github.io/blob/master/HouspitalLogo.png?raw=true'
+                alt="logo"
                 height={25}
                 width={120}
-
               />
+
 
             <div className="flex items-start flex-col">
 
@@ -123,7 +122,8 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
             How can we Help?
           </p>
         </div>
-        <ChatCard heading="Ask any question"/>
+        <ChatCard heading="Ask any question" setChatScreen={setChatScreen} />
+        <div onClick={()=>setChatScreen(true)}>
         <CustomCard
           heading={"Book a Physiotherapist"}
           subheading={''}
@@ -132,34 +132,41 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
               src="https://github.com/bharatvarmagit/bharatvarmagit.github.io/blob/master/icon-physiotherapy.png?raw=true"
               height={28}
               width={28}
+              alt='img'
 
             />
           }
           />
+          </div>
+          <div onClick={()=>setChatScreen(true)}>
           <CustomCard
           heading={"Book Baby and Mother Care"}
           subheading={""}
           left={
-           <img
-              src="https://github.com/bharatvarmagit/bharatvarmagit.github.io/blob/master/icon-baby%20-nd-mother%20care.png?raw=true"
+           <img alt="img"
+           src="https://github.com/bharatvarmagit/bharatvarmagit.github.io/blob/master/icon-baby%20-nd-mother%20care.png?raw=true"
               height={28}
               width={28}
+
 
             />
           }
           />
+          </div>
+          <div onClick={()=>setChatScreen(true)}>
           <CustomCard
           heading={"Get nursing care at home"}
           subheading={""}
           left={
            <img
-              src="https://github.com/bharatvarmagit/bharatvarmagit.github.io/blob/master/icon-nurse.png?raw=true"
+            alt="img"
+            src="https://github.com/bharatvarmagit/bharatvarmagit.github.io/blob/master/icon-nurse.png?raw=true"
               height={28}
               width={28}
-
-            />
+          />
           }
           />
+          </div>
 
 
 
@@ -226,7 +233,7 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
                     className=""
                     onClick={()=>alert("content of message is ")}
                   >
-                    <Send  size={20} ba/>
+                    <Send  size={20} />
                   </Button>
                 </div>
                 {/* <Label htmlFor="bot-image">
