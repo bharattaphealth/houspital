@@ -97,6 +97,9 @@ const AiChatBot = (props: Props) => {
             setShowActions(true)
         }}
         onClick={onOpenChatBot}
+        onMouseLeave={()=>{
+          setTimeout(()=>setShowActions(false),8000)
+        }}
         >
           {!showActions&&
           <TypeAnimation
