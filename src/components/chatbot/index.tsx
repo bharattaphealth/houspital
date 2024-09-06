@@ -1,10 +1,10 @@
 'use client'
 import { useChatBot } from '@/hooks/chatbot/use-chatbot'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BotWindow } from './window'
 import { cn } from '@/lib/utils'
-import Image from 'next/image'
-import { BotIcon } from '@/icons/bot-icon'
+import { MessageCircleMore } from 'lucide-react'
+import { TypeAnimation } from 'react-type-animation';
 
 type Props = {}
 
@@ -15,6 +15,8 @@ const AiChatBot = (props: Props) => {
     onChats,
     register,
     onStartChatting,
+    showActions,
+    setShowActions,
     onAiTyping,
     messageWindowRef,
     currentBot,
@@ -24,9 +26,15 @@ const AiChatBot = (props: Props) => {
     errors,
   } = useChatBot()
 
+  useEffect(()=>{
+    if(botOpened){
+      if(showActions)
+        setShowActions(false)
+    }
+  },[botOpened])
   return (
     <div className="h-screen flex flex-col justify-end items-end gap-2">
-      {botOpened && (
+      {botOpened&&
         <BotWindow
           errors={errors}
           setChat={setOnChats}
@@ -42,23 +50,78 @@ const AiChatBot = (props: Props) => {
           onChat={onStartChatting}
           onResponding={onAiTyping}
         />
-      )}
+      }
+
       <div
-        className={cn
-          'rounded-full relative cursor-pointer shadow-md w-20 h-96 flex items-center justify-center bg-grandis',
-          loading ? 'invisible' : 'visible'
+
+        className={cn(
+          'rounded-md  relative cursor-pointer flex w-[150px] flex-col items-end justify-end bg-transparent',
+          loading ? 'invisible' : 'visible',
+          showActions?'h-[200px]':'h-20'
         )}
+      >
+        {showActions&&!botOpened&&
+
+      <div className='rounded-lg shadow-md mt-2 border-[1px] border-[#EF7F1A] p-1'
         onClick={onOpenChatBot}
       >
-        {currentBot?.chatBot?.icon ? (
-          <Image
-            src={`https://ucarecdn.com/${currentBot.chatBot.icon}/`}
-            alt="bot"
-            fill
+        <p className='p-1 text-[10px] font-inter font-semibold'>
+          Book Nursing Care
+        </p>
+      </div>
+        }
+        {showActions&&!botOpened&&
+       <div className='rounded-lg shadow-md mt-2 border-[1px] border-[#EF7F1A] p-1'
+        onClick={onOpenChatBot}
+       >
+        <p className='p-1 text-[10px] font-inter font-semibold'>
+          Book Mother & Child Care
+        </p>
+      </div>
+        }
+
+        {showActions&&!botOpened&&
+       <div className='rounded-lg shadow-md mt-2 border-[1px] border-[#EF7F1A] p-1'
+        onClick={onOpenChatBot}
+       >
+        <p className='p-1 text-[10px] font-inter font-semibold'>
+          Book Physiotherapist
+        </p>
+      </div>
+        }
+
+
+        <span className=' mt-4 shadow-lg rounded-md flex flex-row items-center justify-end p-2 border-[1.5px] border-[#EF7F1A]'
+        onMouseOver={()=>{
+          if(!botOpened)
+            setShowActions(true)
+        }}
+        onClick={onOpenChatBot}
+        >
+          {!showActions&&
+          <TypeAnimation
+            sequence={[
+              // Same substring at the start will only be typed out once, initially
+              'Ask anything',
+              1000, // wait 1s before replacing "Mice" with "Hamsters"
+              '24/7 Support',
+              1000,
+              'AI Powered',
+              1000,
+            ]}
+            wrapper="span"
+            speed={50}
+            className='text-xs font-inter font-semibold w-[90px] '
+            style={{ display: 'inline-block' }}
+            repeat={Infinity}
           />
-        ) : (
-          <BotIcon />
-        )}
+          }
+
+             <MessageCircleMore color='#EF7F1A' />
+        </span>
+
+
+
       </div>
     </div>
   )

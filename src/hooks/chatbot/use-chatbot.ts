@@ -45,7 +45,13 @@ export const useChatBot = () => {
   >()
   const messageWindowRef = useRef<HTMLDivElement | null>(null)
   const [botOpened, setBotOpened] = useState<boolean>(false)
-  const onOpenChatBot = () => setBotOpened((prev) => !prev)
+  const [showActions,setShowActions] = useState<boolean>(false)
+  const onOpenChatBot = () => {
+    setBotOpened((prev) => {
+      if(!prev) setShowActions(false)
+      return !prev
+      })
+    }
   const [loading, setLoading] = useState<boolean>(true)
   const [onChats, setOnChats] = useState<
     { role: 'assistant' | 'user'; content: string; link?: string }[]
@@ -71,11 +77,11 @@ export const useChatBot = () => {
   useEffect(() => {
     postToParent(
       JSON.stringify({
-        width: botOpened ? 550 : 80,
-        height: botOpened ? 800 : 80,
+        width: botOpened ? 550 : 150,
+        height: botOpened ? 800 : showActions?200:50,
       })
     )
-  }, [botOpened])
+  }, [botOpened,showActions])
 
   let limitRequest = 0
 
@@ -183,6 +189,8 @@ export const useChatBot = () => {
 
   return {
     botOpened,
+    showActions,
+    setShowActions,
     onOpenChatBot,
     onStartChatting,
     onChats,
