@@ -53,16 +53,24 @@ const AiChatBot = (props: Props) => {
       }
 
       <div
-
+        onMouseOver={()=>{
+          if(!showActions &&!botOpened)
+          setShowActions(true)
+        }}
+        onMouseLeave={()=>{
+          if(!botOpened && showActions)
+          setShowActions(false)
+          }}
         className={cn(
-          'rounded-md  relative cursor-pointer flex w-[150px] flex-col items-end justify-end bg-transparent',
+          'rounded-md  relative mr-2 cursor-pointer flex w-[150px] flex-col items-end justify-end bg-transparent',
+          '',
           loading ? 'invisible' : 'visible',
           showActions?'h-[200px]':'h-20'
         )}
       >
         {showActions&&!botOpened&&
 
-      <div className='rounded-lg shadow-md mt-2 border-[1px] border-[#EF7F1A] p-1'
+      <div className='hover:scale-110 rounded-lg shadow-md mt-2 border-[1px] border-[#EF7F1A] p-1'
         onClick={onOpenChatBot}
       >
         <p className='p-1 text-[10px] font-inter font-semibold'>
@@ -71,7 +79,7 @@ const AiChatBot = (props: Props) => {
       </div>
         }
         {showActions&&!botOpened&&
-       <div className='rounded-lg shadow-md mt-2 border-[1px] border-[#EF7F1A] p-1'
+       <div className='hover:scale-110 rounded-lg shadow-md mt-2 border-[1px] border-[#EF7F1A] p-1'
         onClick={onOpenChatBot}
        >
         <p className='p-1 text-[10px] font-inter font-semibold'>
@@ -81,7 +89,7 @@ const AiChatBot = (props: Props) => {
         }
 
         {showActions&&!botOpened&&
-       <div className='rounded-lg shadow-md mt-2 border-[1px] border-[#EF7F1A] p-1'
+       <div className='hover:scale-110 rounded-lg shadow-md mt-2 border-[1px] border-[#EF7F1A] p-1'
         onClick={onOpenChatBot}
        >
         <p className='p-1 text-[10px] font-inter font-semibold'>
@@ -91,15 +99,10 @@ const AiChatBot = (props: Props) => {
         }
 
 
-        <span className=' mt-4 shadow-lg rounded-md flex flex-row items-center justify-end p-2 border-[1.5px] border-[#EF7F1A]'
-        onMouseOver={()=>{
-          if(!botOpened)
-            setShowActions(true)
-        }}
+        <span className='hover:scale-110  my-2 shadow-lg rounded-md flex flex-row items-center justify-end p-2 border-[1.5px] border-[#EF7F1A]'
+
         onClick={onOpenChatBot}
-        onMouseLeave={()=>{
-          setTimeout(()=>setShowActions(false),8000)
-        }}
+
         >
           {!showActions&&
           <TypeAnimation
@@ -114,8 +117,8 @@ const AiChatBot = (props: Props) => {
             ]}
             wrapper="span"
             speed={50}
-            className='text-xs font-inter font-semibold w-[90px] '
-            style={{ display: 'inline-block' }}
+            className='text-xs font-inter font-semibold w-[90px] duration-150 ease-in-out '
+            style={{ display: 'inline-block',animation:"smooth-appear 1s ease forwards" }}
             repeat={Infinity}
           />
           }

@@ -18,6 +18,11 @@ const config = {
       },
     },
     extend: {
+      scale: {
+        '115': '1.15',
+        '110':'1.10',
+        '120':'1.20'
+      },
       colors: {
         cream: '#F5F5F5',
         gravel: '#4E4E4E',

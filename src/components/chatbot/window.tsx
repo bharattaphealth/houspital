@@ -179,7 +179,7 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
         <div
           className=' h-[60px] bg-[#EF7F1A] flex items-center px-2'
         >
-          <div className='flex-none w-10'>
+          <div className='flex-none w-10' onClick={()=>setChatScreen(false)}>
             <ChevronLeft color='#FFFFFF' size={25}/>
           </div>
           <div className='flex-1 w-64'>
